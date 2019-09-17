@@ -14,11 +14,7 @@ namespace Zork
             Console.WriteLine(command);
         }
 
-        private static Commands ToCommand(string commandString)
-        {
-
-            return Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
-        }
+        private static Commands ToCommand(string commandString) => Enum.TryParse(commandString, ignoreCase: true, out Commands result) ? result : Commands.UNKNOWN; //THREE OPERATORS: If the first segment is true, it returns the statement before the : otherwise it returns the statement after the :.
 
     }
 }
