@@ -9,14 +9,39 @@ namespace Zork
 
             Console.WriteLine("Welcome to Zork!");
 
-            string inputString = Console.ReadLine();
-            Commands command = ToCommand(inputString.Trim().ToUpper());
-            Console.WriteLine(command);
-        }
+            Commands command = Commands.UNKNOWN;
+            while (command != Commands.QUIT)
+            {
+                Console.Write("> ");
+                command = ToCommand(Console.ReadLine().Trim());
 
-        private static Commands ToCommand(string commandString) => Enum.TryParse(commandString, ignoreCase: true, out Commands result) ? result : Commands.UNKNOWN; //THREE OPERATORS: If the first segment is true, it returns the statement before the : otherwise it returns the statement after the :.
+                string outputString;
+                switch (command)
+                {
+                    case Commands.QUIT:
+                        outputString = "Thank you for playing!";
+                        break;
+
+                    case Commands.LOOK:
+                        outputString = "This is an open field west of a white house, with a boarded front door. \nA rubber mat saying 'Welcome to Zork!' lies by the door.";
+                        break;
+
+                    case Commands.NORTH:
+                    case Commands.SOUTH:
+                    case Commands.EAST:
+                    case Commands.WEST:
+                        outputString = $"You moved {command}.";
+                        break;
+
+                    default:
+                        outputString = "Uknown Command.";
+                        break;
+                }
+
+                Console.WriteLine(outputString);
+            }
+        }
+            private static Commands ToCommand(string commandString) => Enum.TryParse(commandString, ignoreCase: true, out Commands result) ? result : Commands.UNKNOWN; //THREE OPERATORS: If the first segment is true, it returns the statement before the : otherwise it returns the statement after the :.
 
     }
 }
-
-
