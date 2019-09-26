@@ -44,7 +44,7 @@ namespace Zork
                     case Commands.WEST:
                         if(Move(command) == false)
                         {
-                            Console.WriteLine("The way is shut!");
+                            Console.WriteLine("\nYou cannot go this way.\n");
                         }
                         break;
 
